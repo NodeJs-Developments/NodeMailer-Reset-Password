@@ -3,6 +3,9 @@ const nodemailer = require("nodemailer");
 const password = process.env.PASS;
 const user = process.env.USER;
 
+const zohopassword = process.env.ZOHO_PASS;
+const zohouser = process.env.ZOHO_USER;
+
 const sendEmail = async(name,email, subject, text) =>{
     try{
         const transporter = nodemailer.createTransport({
@@ -19,31 +22,31 @@ const sendEmail = async(name,email, subject, text) =>{
             // }
 
             // Gmail Code Working
-            service: 'Gmail',
-            host: 'smtp.gmail.com',
-            port: 465,
-            secure: true,
-            auth: {
-                user: user,
-                pass: password,
-            },
-            tls: {
-                ciphers: "SSLv3",
-                rejectUnauthorized: false
-            }
-
-            // // Zoho Code not work
-            // host: 'smtp.zoho.com',
+            // service: 'Gmail',
+            // host: 'smtp.gmail.com',
             // port: 465,
-            // secure: true, // use SSL
+            // secure: true,
             // auth: {
-            // user: 'patidaranil0791@gmail.com',
-            // pass: 'EnkZnJtwMnE4'
+            //     user: user,
+            //     pass: password,
             // },
             // tls: {
-            //         ciphers: "SSLv3",
-            //         rejectUnauthorized: false
+            //     ciphers: "SSLv3",
+            //     rejectUnauthorized: false
             // }
+
+            // // Zoho Code work
+            host: 'smtp.zoho.com',
+            port: 465,
+            secure: true, // use SSL
+            auth: {
+            user: zohouser,
+            pass: zohopassword,
+            },
+            tls: {
+                    ciphers: "SSLv3",
+                    rejectUnauthorized: false,
+            }
 
         });
 
